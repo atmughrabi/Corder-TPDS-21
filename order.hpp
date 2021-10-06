@@ -6,6 +6,8 @@
 #include <parallel/numeric>
 #include <algorithm>
 #include <random>
+#include <fstream>
+#include <string>
 
 #include "graph.hpp"
 #include "vec2d.hpp"
@@ -22,6 +24,7 @@ class Orderer {
     unsigned num_levels;
     unsigned average_degree;
     std::vector<unsigned> levels;
+    std::string data_file;
 
     Graph* graph;
 public:
@@ -29,6 +32,7 @@ public:
 
     Orderer(Graph* g) {
         this->graph = g;
+        data_file = graph->data_file;
         num_vertex = graph->num_vertex;
         num_edges = graph->num_edges;
         num_partitions = params::num_partitions;
@@ -382,6 +386,17 @@ public:
                 }
             }
         }
+
+        std::ofstream out((data_file + "_Corder.labels").c_str());
+
+        int u;
+        for(int i = 0; i < num_vertex; i++)
+        {
+            u = new_id[i];
+            out << u << std::endl;
+        }
+        out.close();
+
    }
 
     void getNewGraph() {

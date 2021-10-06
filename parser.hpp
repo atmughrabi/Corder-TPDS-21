@@ -31,6 +31,7 @@ bool parseGraph(std::string filename, Graph& graph) {
     local_row.push_back(graph.num_edges);
     graph.row_index = std::move(local_row);
     graph.col_index = std::move(local_col);
+    graph.data_file = filename;
 
 #ifdef WEIGHTED
     std::vector<unsigned> local_wei(graph.num_edges);

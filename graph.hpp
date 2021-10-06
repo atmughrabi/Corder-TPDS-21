@@ -7,6 +7,7 @@
 #include <omp.h>
 #include <vector>
 #include <cmath>
+#include <string>
 #ifndef SORT_HEADER
 #include "sort.hpp"
 #include "global.hpp"
@@ -22,6 +23,7 @@ public:
     std::vector<unsigned> col_index;
     std::vector<unsigned> out_degree;
     std::vector<float> attr;
+    std::string data_file;
 #ifdef WEIGHTED
     std::vector<unsigned> edge_weight;
 #endif
